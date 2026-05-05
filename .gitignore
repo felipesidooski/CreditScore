@@ -1,0 +1,28 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Environments
+.env
+.venv/
+venv/
+env/
+ENV/
+
+# Local/editor files
+.idea/
+.vscode/
+
+# Generated runtime outputs
+outputs/
+tmp/
+*.log
+
+# Keep final model artifacts versioned for the project delivery.
+!models/*.joblib
+
