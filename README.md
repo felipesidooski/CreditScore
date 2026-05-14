@@ -20,9 +20,9 @@ dependencias e carregar este README como Markdown para servir como roteiro da
 apresentacao.
 
 ```bash
-git clone https://github.com/felipesidooski/CreditScore.git
+!git clone https://github.com/felipesidooski/CreditScore.git
 cd CreditScore
-pip install -r requirements.txt
+!pip install -r requirements.txt
 ```
 
 Para renderizar este README dentro do proprio notebook Colab:
