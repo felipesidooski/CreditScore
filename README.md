@@ -9,6 +9,10 @@ modelos obrigatorios da rubrica, KNN e Arvore de Decisao, e tambem apresenta
 experimentos avancados com XGBoost, LightGBM, stacking, selecao de atributos,
 Optuna, calibracao e reamostragem.
 
+*Nota/Observação*: Todas as classes e métodos foram escritas usando docstring baseado no
+modelo google. A revisão, melhoria e padronização das mesmas foi realizada utilizando
+auxilios de IA (claude).
+
 ## Como usar no Colab
 
 No Google Colab, a execucao recomendada e clonar o repositorio, instalar as
@@ -80,8 +84,6 @@ executar pela raiz do repositorio com:
 ├── models/
 │   ├── importancexgboost_top50.joblib
 │   └── optunaxgboost.joblib
-├── notebooks/
-│   └── credit_score.ipynb
 ├── reports/
 │   ├── prediction_examples_importance_top50.csv
 │   ├── prediction_examples_optuna_xgboost.csv
@@ -296,11 +298,10 @@ execucoes historicas. Por isso, o Colab nao precisa retreinar todos os modelos
 para apresentar os resultados; basta carregar o README e, no final, executar os
 modelos pre-treinados para demonstrar predicoes.
 
-## Aderencia aos requisitos do projeto
+## Requisitos de projeto
 
-O enunciado do projeto exige um notebook limpo e executavel com apresentacao da
-base, AED, pre-processamento, treinamento e protocolo experimental. A entrega
-foi estruturada para atender esses pontos da seguinte forma:
+Este projeto exige a execução com apresentado da base de dados, AED, pre-processamento,
+treinamento e protocolo experimental. Estrutura da entrega:
 
 | Requisito do projeto | Onde aparece no projeto | Observacao |
 |---|---|---|
@@ -544,16 +545,17 @@ melhor entre adimplentes e inadimplentes, com maior `F1_1` e maior `ROC-AUC`.
 
 No `ImportanceXGBoost_top50`, a acuracia de `0,7229` e menor que a do baseline,
 mas isso acontece porque o modelo deixa de prever tudo como adimplente e passa a
-sinalizar risco. O ponto forte e o `recall_1 = 0,5335`: ele identifica mais da
+sinalizar risco. O ponto forte é o `recall_1 = 0,5335`: ele identifica mais da
 metade dos inadimplentes reais. A precisao de `0,1800` significa que, entre os
 clientes sinalizados como risco, 18% eram de fato inadimplentes. Esse valor pode
 parecer baixo, mas deve ser comparado com a prevalencia original da classe
-inadimplente, que e de apenas 9,56%.
+inadimplente, que e de apenas 9,56%, desta forma, estamos praticamente dobrando 
+nossa precisão.
 
 No `OptunaXGBoost`, a acuracia sobe para `0,7947` e o `F1_1` chega a `0,2780`,
 o melhor equilibrio entre precisao e recall entre os modelos escolhidos. O
 `ROC-AUC = 0,6990` indica a melhor capacidade geral de separacao entre as
-classes. Em contrapartida, o `recall_1 = 0,4132` e menor que o do Top 50, ou
+classes. Em contrapartida, o `recall_1 = 0,4132` é menor que o do Top 50, ou
 seja, ele detecta menos inadimplentes, mas gera alertas de risco mais
 equilibrados.
 
@@ -596,8 +598,8 @@ models/optunaxgboost.joblib
 Justificativa:
 
 - melhor `ROC-AUC` entre os modelos XGBoost: `0,6990`;
-- parametros escolhidos por busca bayesiana com Optuna;
-- boa alternativa quando o foco e separacao global entre adimplentes e
+- parametros escolhidos por busca bayesiana (https://pt.wikipedia.org/wiki/Infer%C3%AAncia_bayesiana) com Optuna;
+- boa alternativa quando o foco é separacao global entre adimplentes e
   inadimplentes.
 
 Metricas reportadas no holdout:
